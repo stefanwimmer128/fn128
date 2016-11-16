@@ -149,6 +149,20 @@ function array(fn128) {
             return fn128.reduce(function (val, ret, i, arr) {
                 return ret ? fn(val, i, arr) : ret;
             }, true);
+        },
+
+        shuffle: function shuffle(arr) {
+            var ret = [].concat(_toConsumableArray(arr));
+
+            for (var i = 0; i < ret.length - 2; i++) {
+                var j = (Math.random() * (ret.length - i) | 0) + i;
+
+                var _ref = [ret[j], ret[i]];
+                ret[i] = _ref[0];
+                ret[j] = _ref[1];
+            }
+
+            return ret;
         }
     };
 }
@@ -165,6 +179,9 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.default = fn;
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 /**
  * Created on 15.11.16 at 22:52
  * @author Stefan Wimmer <stefanwimmer128@gmail.com>
@@ -175,6 +192,57 @@ function fn(fn128) {
         invert: function invert(fn) {
             return function () {
                 return !fn.apply(undefined, arguments);
+            };
+        },
+
+        curry: function curry(fn) {
+            return function curry(arg) {
+                var args = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+                args.push(arg);
+
+                if (args.length === fn.length) return fn.apply(undefined, _toConsumableArray(args));
+
+                return function (arg) {
+                    return curry(arg, args);
+                };
+            };
+        },
+
+        uncurry: function uncurry(fn) {
+            return function () {
+                for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+                    args[_key] = arguments[_key];
+                }
+
+                var ret = fn;
+
+                var _iteratorNormalCompletion = true;
+                var _didIteratorError = false;
+                var _iteratorError = undefined;
+
+                try {
+                    for (var _iterator = args[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                        var arg = _step.value;
+
+                        ret = ret(arg);
+                    }
+                } catch (err) {
+                    _didIteratorError = true;
+                    _iteratorError = err;
+                } finally {
+                    try {
+                        if (!_iteratorNormalCompletion && _iterator.return) {
+                            _iterator.return();
+                        }
+                    } finally {
+                        if (_didIteratorError) {
+                            throw _iteratorError;
+                        }
+                    }
+                }
+
+                return ret;
             };
         }
     };
@@ -191,7 +259,8 @@ module.exports = {
 	"description": "Functional programming",
 	"main": "dist/fn128.js",
 	"scripts": {
-		"build": "webpack"
+		"build": "webpack",
+		"test": "babel-node test/test"
 	},
 	"repository": {
 		"type": "git",
@@ -209,6 +278,7 @@ module.exports = {
 	},
 	"homepage": "https://github.com/stefanwimmer128/fn128#readme",
 	"devDependencies": {
+		"babel-cli": "^6.18.0",
 		"babel-core": "^6.18.2",
 		"babel-loader": "^6.2.7",
 		"babel-plugin-add-module-exports": "^0.2.1",

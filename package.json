@@ -1,10 +1,11 @@
 {
   "name": "fn128",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Functional programming",
   "main": "dist/fn128.js",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "test": "babel-node test/test"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/stefanwimmer128/fn128#readme",
   "devDependencies": {
+    "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.7",
     "babel-plugin-add-module-exports": "^0.2.1",

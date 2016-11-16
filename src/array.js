@@ -55,5 +55,19 @@ export default function array(fn128)
                 ret ? fn(val, i, arr) : ret,
                 true
             ),
+        
+        shuffle: arr =>
+        {
+            const ret = [ ...arr ];
+            
+            for (let i = 0; i < ret.length - 2; i++)
+            {
+                const j = (Math.random() * ( ret.length - i ) | 0) + i;
+                
+                [ ret[i], ret[j] ] = [ ret[j], ret[i] ];
+            }
+            
+            return ret;
+        },
     };
 }

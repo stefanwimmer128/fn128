@@ -9,5 +9,28 @@ export default function fn(fn128)
         invert: fn =>
             (...args) =>
                 ! fn(...args),
+        
+        curry: fn =>
+            function curry(arg, args = [])
+            {
+                args.push(arg);
+                
+                if (args.length === fn.length)
+                    return fn(...args);
+                
+                return arg =>
+                    curry(arg, args);
+            },
+        
+        uncurry: fn =>
+            (...args) =>
+            {
+                let ret = fn;
+                
+                for (const arg of args)
+                    ret = ret(arg);
+                
+                return ret;
+            }
     };
 }
