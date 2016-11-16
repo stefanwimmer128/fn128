@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -178,6 +178,34 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = debug;
+/**
+ * Created on 16.11.16 at 10:18
+ * @author Stefan Wimmer <stefanwimmer128@gmail.com>
+ */
+
+function debug(fn128) {
+    return {
+        timeout: function timeout(time) {
+            var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+            return new Promise(function (resolve) {
+                return setTimeout(resolve.bind(null, data), time);
+            });
+        }
+    };
+}
+module.exports = exports["default"];
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 exports.default = fn;
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -250,12 +278,12 @@ function fn(fn128) {
 module.exports = exports["default"];
 
 /***/ },
-/* 2 */
+/* 3 */
 /***/ function(module, exports) {
 
 module.exports = {
 	"name": "fn128",
-	"version": "1.0.0-alpha.1",
+	"version": "1.0.0-alpha.2",
 	"description": "Functional programming",
 	"main": "dist/fn128.js",
 	"scripts": {
@@ -289,7 +317,7 @@ module.exports = {
 };
 
 /***/ },
-/* 3 */
+/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -299,17 +327,21 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _package = __webpack_require__(2);
+var _package = __webpack_require__(3);
 
 var _package2 = _interopRequireDefault(_package);
 
-var _fn = __webpack_require__(1);
+var _fn = __webpack_require__(2);
 
 var _fn2 = _interopRequireDefault(_fn);
 
 var _array = __webpack_require__(0);
 
 var _array2 = _interopRequireDefault(_array);
+
+var _debug = __webpack_require__(1);
+
+var _debug2 = _interopRequireDefault(_debug);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -325,6 +357,8 @@ var fn128 = {
 Object.assign(fn128, (0, _fn2.default)(fn128));
 
 Object.assign(fn128, (0, _array2.default)(fn128));
+
+Object.assign(fn128, (0, _debug2.default)(fn128));
 
 exports.default = fn128;
 module.exports = exports["default"];
