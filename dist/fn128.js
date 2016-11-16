@@ -109,9 +109,9 @@ function array(fn128) {
 
                 var ret = start;
 
-                arr.each(function (val, i, arr) {
-                    return void (ret = fn(val, i, arr));
-                });
+                fn128.each(function (val, i, arr) {
+                    return void (ret = fn(val, ret, i, arr));
+                })(arr);
 
                 return ret;
             };
@@ -125,18 +125,20 @@ function array(fn128) {
 
         filter: function filter(fn) {
             return fn128.reduce(function (val, ret, i, arr) {
-                return fn(val, i, arr) ? [].concat(_toConsumableArray(ret), [val]) : [];
+                return fn(val, i, arr) ? [].concat(_toConsumableArray(ret), [val]) : ret;
             }, []);
         },
 
         find: function find(fn) {
             return function (arr) {
-                return [fn128.filter(fn)(arr)[0]];
+                var ret = fn128.filter(fn)(arr)[0];
+
+                return typeof ret === "undefined" ? [] : [ret];
             };
         },
 
         reject: function reject(fn) {
-            return fn128.find(fn128.invert(fn));
+            return fn128.filter(fn128.invert(fn));
         },
 
         some: function some(fn) {
@@ -283,12 +285,12 @@ module.exports = exports["default"];
 
 module.exports = {
 	"name": "fn128",
-	"version": "1.0.0-alpha.2",
+	"version": "1.0.0-beta.2",
 	"description": "Functional programming",
 	"main": "dist/fn128.js",
 	"scripts": {
 		"build": "webpack",
-		"test": "babel-node test/test"
+		"test": "nodeunit test/test.js"
 	},
 	"repository": {
 		"type": "git",
@@ -306,12 +308,12 @@ module.exports = {
 	},
 	"homepage": "https://github.com/stefanwimmer128/fn128#readme",
 	"devDependencies": {
-		"babel-cli": "^6.18.0",
 		"babel-core": "^6.18.2",
 		"babel-loader": "^6.2.7",
 		"babel-plugin-add-module-exports": "^0.2.1",
 		"babel-preset-es2015": "^6.18.0",
 		"json-loader": "^0.5.4",
+		"nodeunit": "^0.10.2",
 		"webpack": "^2.1.0-beta.27"
 	}
 };
@@ -348,6 +350,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var fn128 = {
     get version() {
         return _package2.default.version;
+    },
+
+    extend: function extend(_extend) {
+        return Object.assign(fn128, Object.assign({}, _extend, fn128));
     }
 }; /**
     * Created on 15.11.16 at 22:03

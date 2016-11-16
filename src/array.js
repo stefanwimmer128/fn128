@@ -18,9 +18,9 @@ export default function array(fn128)
             {
                 let ret = start;
                 
-                arr.each((val, i, arr) =>
-                    void (ret = fn(val, i, arr))
-                );
+                fn128.each((val, i, arr) =>
+                    void (ret = fn(val, ret, i, arr))
+                )(arr);
                 
                 return ret;
             },
@@ -33,16 +33,20 @@ export default function array(fn128)
         
         filter: fn =>
             fn128.reduce((val, ret, i, arr) =>
-                fn(val, i, arr) ? [ ...ret, val ] : [],
+                fn(val, i, arr) ? [ ...ret, val ] : ret,
                 [],
             ),
         
         find: fn =>
             arr =>
-                [ fn128.filter(fn)(arr)[0] ],
+            {
+                const ret = fn128.filter(fn)(arr)[0];
+                
+                return typeof ret === "undefined" ? [] : [ ret ];
+            },
         
         reject: fn =>
-            fn128.find(fn128.invert(fn)),
+            fn128.filter(fn128.invert(fn)),
         
         some: fn =>
             fn128.reduce((val, ret, i, arr) =>

@@ -9,7 +9,10 @@ const fn128 = {
     get version()
     {
         return pkg.version;
-    }
+    },
+    
+    extend: extend =>
+        Object.assign(fn128, Object.assign({}, extend, fn128)),
 };
 
 import fn from "./fn";
