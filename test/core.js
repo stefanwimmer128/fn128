@@ -16,10 +16,14 @@ export function extend(test)
 {
     fn128.extend({
         test: () => true,
+        
+        extend: null,
     });
     
     test.strictEqual(typeof fn128.test, "function");
     test.ok(fn128.test());
+    
+    test.strictEqual(typeof fn128.extend, "function");
     
     test.done();
 }

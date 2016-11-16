@@ -12,7 +12,13 @@ const fn128 = {
     },
     
     extend: extend =>
-        Object.assign(fn128, extend),
+    {
+        for (const key in extend)
+            if (extend.hasOwnProperty(key) && typeof fn128[key] === "undefined")
+                fn128[key] = extend[key];
+        
+        return fn128;
+    },
 };
 
 import fn from "./fn";
