@@ -12,7 +12,7 @@ const fn128 = {
     },
     
     extend: extend =>
-        Object.assign(fn128, Object.assign({}, extend, fn128)),
+        Object.assign(fn128, extend),
 };
 
 import fn from "./fn";

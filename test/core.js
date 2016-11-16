@@ -11,3 +11,15 @@ export function version(test)
     
     test.done();
 }
+
+export function extend(test)
+{
+    fn128.extend({
+        test: () => true,
+    });
+    
+    test.strictEqual(typeof fn128.test, "function");
+    test.ok(fn128.test());
+    
+    test.done();
+}

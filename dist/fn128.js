@@ -285,7 +285,7 @@ module.exports = exports["default"];
 
 module.exports = {
 	"name": "fn128",
-	"version": "1.0.0-beta.2",
+	"version": "1.0.0",
 	"description": "Functional programming",
 	"main": "dist/fn128.js",
 	"scripts": {
@@ -354,7 +354,7 @@ var fn128 = {
     },
 
     extend: function extend(_extend) {
-        return Object.assign(fn128, Object.assign({}, _extend, fn128));
+        return Object.assign(fn128, _extend);
     }
 }; /**
     * Created on 15.11.16 at 22:03
