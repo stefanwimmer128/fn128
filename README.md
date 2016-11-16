@@ -3,9 +3,9 @@
 ## How to install
 
 ``` bash
-npm install stefanwimmer128/fn128
+npm install fn128
 # or
-bower install stefanwimmer128/fn128
+bower install fn128
 ```
 
 ## How to use
