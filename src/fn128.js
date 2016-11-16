@@ -18,4 +18,7 @@ Object.assign(fn128, fn(fn128));
 import array from "./array";
 Object.assign(fn128, array(fn128));
 
+import debug from "./debug";
+Object.assign(fn128, debug(fn128));
+
 export default fn128;

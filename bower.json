@@ -1,0 +1,22 @@
+{
+  "name": "fn128",
+  "description": "Functional programming",
+  "main": "dist/fn128.js",
+  "authors": [
+    "Stefan Wimmer <stefanwimmer128@gmail.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "function",
+    "functional",
+    "fn"
+  ],
+  "homepage": "https://github.com/stefanwimmer128/fn128",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
