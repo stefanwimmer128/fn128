@@ -5,10 +5,10 @@
 
 import fn128 from "../dist/fn128";
 
-exports.invert = test =>
+export function invert(test)
 {
     test.ok(fn128.invert(() => false)());
     test.ok(! fn128.invert(() => true)());
     
     test.done();
-};
+}

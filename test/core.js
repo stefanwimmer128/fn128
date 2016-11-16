@@ -5,9 +5,9 @@
 
 import fn128 from "../dist/fn128";
 
-exports.version = test =>
+export function version(test)
 {
     test.strictEqual(fn128.version, require("../package.json").version);
     
     test.done();
-};
+}

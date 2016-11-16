@@ -5,7 +5,8 @@
 
 import fn128 from "../dist/fn128";
 
-exports.timeout = test =>
+export function timeout(test)
+{
     Promise.all([
         fn128.timeout(10, true),
         fn128.timeout(10, false),
@@ -16,3 +17,4 @@ exports.timeout = test =>
         
         test.done();
     });
+}
