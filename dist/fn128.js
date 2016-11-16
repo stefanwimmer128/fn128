@@ -312,6 +312,7 @@ module.exports = {
 		"babel-loader": "^6.2.7",
 		"babel-plugin-add-module-exports": "^0.2.1",
 		"babel-preset-es2015": "^6.18.0",
+		"babel-register": "^6.18.0",
 		"json-loader": "^0.5.4",
 		"nodeunit": "^0.10.2",
 		"webpack": "^2.1.0-beta.27"
