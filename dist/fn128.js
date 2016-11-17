@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -281,46 +281,6 @@ module.exports = exports["default"];
 
 /***/ },
 /* 3 */
-/***/ function(module, exports) {
-
-module.exports = {
-	"name": "fn128",
-	"version": "1.1.0",
-	"description": "Functional programming",
-	"main": "dist/fn128.js",
-	"scripts": {
-		"build": "webpack",
-		"test": "nodeunit test/test.js"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+ssh://git@github.com/stefanwimmer128/fn128.git"
-	},
-	"keywords": [
-		"function",
-		"functional",
-		"fn"
-	],
-	"author": "Stefan Wimmer <stefanwimmer128@gmail.com>",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/stefanwimmer128/fn128/issues"
-	},
-	"homepage": "https://github.com/stefanwimmer128/fn128#readme",
-	"devDependencies": {
-		"babel-core": "^6.18.2",
-		"babel-loader": "^6.2.7",
-		"babel-plugin-add-module-exports": "^0.2.1",
-		"babel-preset-es2015": "^6.18.0",
-		"babel-register": "^6.18.0",
-		"json-loader": "^0.5.4",
-		"nodeunit": "^0.10.2",
-		"webpack": "^2.1.0-beta.27"
-	}
-};
-
-/***/ },
-/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -329,10 +289,6 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-
-var _package = __webpack_require__(3);
-
-var _package2 = _interopRequireDefault(_package);
 
 var _fn = __webpack_require__(2);
 
@@ -348,9 +304,14 @@ var _debug2 = _interopRequireDefault(_debug);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/**
+ * Created on 15.11.16 at 22:03
+ * @author Stefan Wimmer <stefanwimmer128@gmail.com>
+ */
+
 var fn128 = {
     get version() {
-        return _package2.default.version;
+        return "1.2.0";
     },
 
     extend: function extend(_extend) {
@@ -358,10 +319,7 @@ var fn128 = {
             if (_extend.hasOwnProperty(key) && typeof fn128[key] === "undefined") fn128[key] = _extend[key];
         }return fn128;
     }
-}; /**
-    * Created on 15.11.16 at 22:03
-    * @author Stefan Wimmer <stefanwimmer128@gmail.com>
-    */
+};
 
 Object.assign(fn128, (0, _fn2.default)(fn128));
 

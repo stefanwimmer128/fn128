@@ -4,6 +4,7 @@
  */
 
 const path = require("path");
+const combineLoaders = require("webpack-combine-loaders");
 
 module.exports = {
     entry: "./src/fn128",
@@ -12,19 +13,26 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: "babel-loader",
-                query: {
-                    presets: [
-                        "es2015",
-                    ],
-                    plugins: [
-                        "add-module-exports",
-                    ],
-                },
-            },
-            {
-                test: /\.json$/,
-                loader: "json-loader",
+                loader: combineLoaders([
+                    {
+                        loader: "string-replace-loader",
+                        query: {
+                            search: "${version}",
+                            replace: require("./package.json").version,
+                        },
+                    },
+                    {
+                        loader: "babel-loader",
+                        query: {
+                            presets: [
+                                "es2015",
+                            ],
+                            plugins: [
+                                "add-module-exports",
+                            ],
+                        },
+                    },
+                ]),
             },
         ],
     },

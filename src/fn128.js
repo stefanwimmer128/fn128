@@ -3,12 +3,10 @@
  * @author Stefan Wimmer <stefanwimmer128@gmail.com>
  */
 
-import pkg from "../package.json";
-
 const fn128 = {
     get version()
     {
-        return pkg.version;
+        return "${version}";
     },
     
     extend: extend =>
