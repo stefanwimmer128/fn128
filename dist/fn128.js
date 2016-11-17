@@ -311,7 +311,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var fn128 = {
     get version() {
-        return "1.2.0";
+        return "1.2.1";
     },
 
     extend: function extend(_extend) {

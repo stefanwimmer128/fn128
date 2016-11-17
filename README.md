@@ -18,7 +18,7 @@ This library is compatible with most of the most used environments.
 const fn128 = require("fn128");
 ```
 
-## Using AMD (e.g. RequireJS)
+### Using AMD (e.g. RequireJS)
 
 ``` javascript
 require([ "path/to/fn128" ], function (fn128)
@@ -27,7 +27,7 @@ require([ "path/to/fn128" ], function (fn128)
 });
 ```
 
-## Use in browser
+### Use in browser
 
 ``` html
 <script src="path/to/fn128.js"></script>
