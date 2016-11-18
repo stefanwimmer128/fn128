@@ -55,3 +55,16 @@ export function shuffle(test)
     
     test.done();
 }
+
+export function sort(test)
+{
+    const sort = [];
+    for (let i = 0; i < 16; i++)
+        sort.push(i);
+    
+    const shuffle = fn128.shuffle(sort);
+    
+    test.deepEqual(fn128.sort((a, b) => a - b)(shuffle), sort);
+    
+    test.done();
+}

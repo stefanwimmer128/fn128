@@ -165,6 +165,20 @@ function array(fn128) {
             }
 
             return ret;
+        },
+
+        sort: function sort(fn) {
+            return function (arr) {
+                if (arr.length <= 1) return arr;
+
+                var ret = 0;
+                for (var i = 1; i < arr.length; i++) {
+                    if (fn(arr[ret], arr[i]) > 0) ret = i;
+                }var next = [];
+                for (var _i = 0; _i < arr.length; _i++) {
+                    if (_i !== ret) next.push(arr[_i]);
+                }return [arr[ret]].concat(_toConsumableArray(fn128.sort(fn)(next)));
+            };
         }
     };
 }
@@ -311,7 +325,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var fn128 = {
     get version() {
-        return "1.2.1";
+        return "1.3.0";
     },
 
     extend: function extend(_extend) {

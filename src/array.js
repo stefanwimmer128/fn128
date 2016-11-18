@@ -73,5 +73,24 @@ export default function array(fn128)
             
             return ret;
         },
+        
+        sort: fn =>
+            arr =>
+            {
+                if (arr.length <= 1)
+                    return arr;
+                
+                let ret = 0;
+                for (let i = 1; i < arr.length; i++)
+                    if (fn(arr[ret], arr[i]) > 0)
+                        ret = i;
+                
+                const next = [];
+                for (let i = 0; i < arr.length; i++)
+                    if (i !== ret)
+                        next.push(arr[i]);
+                
+                return [ arr[ret], ...fn128.sort(fn)(next) ];
+            }
     };
 }
