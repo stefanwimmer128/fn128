@@ -31,6 +31,6 @@ export default function fn(fn128)
                     ret = ret(arg);
                 
                 return ret;
-            }
+            },
     };
 }

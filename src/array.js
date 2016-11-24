@@ -91,6 +91,6 @@ export default function array(fn128)
                         next.push(arr[i]);
                 
                 return [ arr[ret], ...fn128.sort(fn)(next) ];
-            }
+            },
     };
 }

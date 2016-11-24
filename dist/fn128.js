@@ -71,7 +71,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -194,6 +194,37 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = core;
+/**
+ * Created on 24.11.16 at 14:20
+ * @author Stefan Wimmer <stefanwimmer128@gmail.com>
+ */
+
+function core(fn128) {
+    return {
+        get version() {
+            return "1.4.0";
+        },
+
+        extend: function extend(_extend) {
+            for (var key in _extend) {
+                if (_extend.hasOwnProperty(key) && typeof fn128[key] === "undefined") fn128[key] = _extend[key];
+            }return fn128;
+        }
+    };
+}
+module.exports = exports["default"];
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 exports.default = debug;
 /**
  * Created on 16.11.16 at 10:18
@@ -213,7 +244,7 @@ function debug(fn128) {
 module.exports = exports["default"];
 
 /***/ },
-/* 2 */
+/* 3 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -294,8 +325,8 @@ function fn(fn128) {
 module.exports = exports["default"];
 
 /***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
+/* 4 */
+/***/ function(module, exports) {
 
 "use strict";
 "use strict";
@@ -303,8 +334,46 @@ module.exports = exports["default"];
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.default = generator;
+/**
+ * Created on 24.11.16 at 14:36
+ * @author Stefan Wimmer <stefanwimmer128@gmail.com>
+ */
 
-var _fn = __webpack_require__(2);
+function generator(fn128) {
+    return {
+        resolve: function resolve(generator) {
+            var itr = generator();
+
+            (function resolve(_ref) {
+                var done = _ref.done,
+                    value = _ref.value;
+
+                if (!done) value.then(function (value) {
+                    return resolve(itr.next(value));
+                });
+            })(itr.next());
+        }
+    };
+}
+module.exports = exports["default"];
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+"use strict";
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _core = __webpack_require__(1);
+
+var _core2 = _interopRequireDefault(_core);
+
+var _fn = __webpack_require__(3);
 
 var _fn2 = _interopRequireDefault(_fn);
 
@@ -312,9 +381,13 @@ var _array = __webpack_require__(0);
 
 var _array2 = _interopRequireDefault(_array);
 
-var _debug = __webpack_require__(1);
+var _debug = __webpack_require__(2);
 
 var _debug2 = _interopRequireDefault(_debug);
+
+var _generator = __webpack_require__(4);
+
+var _generator2 = _interopRequireDefault(_generator);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -323,23 +396,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  * @author Stefan Wimmer <stefanwimmer128@gmail.com>
  */
 
-var fn128 = {
-    get version() {
-        return "1.3.0";
-    },
+var fn128 = {};
 
-    extend: function extend(_extend) {
-        for (var key in _extend) {
-            if (_extend.hasOwnProperty(key) && typeof fn128[key] === "undefined") fn128[key] = _extend[key];
-        }return fn128;
-    }
-};
+Object.assign(fn128, (0, _core2.default)(fn128));
 
 Object.assign(fn128, (0, _fn2.default)(fn128));
 
 Object.assign(fn128, (0, _array2.default)(fn128));
 
 Object.assign(fn128, (0, _debug2.default)(fn128));
+
+Object.assign(fn128, (0, _generator2.default)(fn128));
 
 exports.default = fn128;
 module.exports = exports["default"];

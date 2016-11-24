@@ -3,21 +3,10 @@
  * @author Stefan Wimmer <stefanwimmer128@gmail.com>
  */
 
-const fn128 = {
-    get version()
-    {
-        return "${version}";
-    },
-    
-    extend: extend =>
-    {
-        for (const key in extend)
-            if (extend.hasOwnProperty(key) && typeof fn128[key] === "undefined")
-                fn128[key] = extend[key];
-        
-        return fn128;
-    },
-};
+const fn128 = {};
+
+import core from "./core";
+Object.assign(fn128, core(fn128));
 
 import fn from "./fn";
 Object.assign(fn128, fn(fn128));
@@ -27,5 +16,8 @@ Object.assign(fn128, array(fn128));
 
 import debug from "./debug";
 Object.assign(fn128, debug(fn128));
+
+import generator from "./generator";
+Object.assign(fn128, generator(fn128));
 
 export default fn128;
